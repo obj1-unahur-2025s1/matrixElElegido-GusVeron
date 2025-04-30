@@ -1,9 +1,56 @@
+import matrix.*
 
 
-describe "group of tests " {
+describe "Testeo Matrix: El Elegido parte 1, Modelado de pasajeros" {
 
-  test "test 01" {
-    assert.equals(100, 50+50)
+  test "vitalidad de neo es 5 tras saltar 1 vez" {
+    neo.saltar()
+
+    assert.equals(5, neo.vitalidad())
   }
 
+  test "Morfeo salta 1 vez y queda cansado" {
+    morfeo.saltar()
+
+    assert.that(morfeo.estaCansado())
+  }
+  
+  test "Morfeo salta 2 veces y queda descansado" {
+    morfeo.saltar()
+    morfeo.saltar()
+
+    assert.notThat(morfeo.estaCansado())
+  }
+}
+
+describe "Teaste Matrix: El Elegido parte 2, Modelado de la nave" {
+  test "Cantidad actual de pasajeros en la nave" {
+    assert.equals(3, nave.cuantosPasajerosHay())
+  }
+
+  test "El pasajero con mas vitalidad" {
+    assert.equals(neo, nave.pasajeroConMasVitalidad())
+  }
+
+  test "El pasajero con menos vitalidad" {
+    assert.equals(trinity, nave.pasajeroConMenosVitalidad())
+  }
+
+  test "Si la nave esta equilibrada" {
+    assert.that(nave.estaEquilibrada())
+  }
+
+  test "Si el elegido esta en la nave" {
+    assert.that(nave.elElegidoEstaEnLaNave())
+  }
+
+  test "La nave choca, todos saltan y la nave queda vacia" {
+    nave.choqueDeLaNave()
+
+    assert.equals(0, nave.cuantosPasajerosHay())
+  }
+
+  test "Pasajeros que no son el elegido" {
+    assert.equals(#{trinity, morfeo}, nave.pasajerosQueNoSonElElegido())
+  }
 }
